@@ -21,6 +21,7 @@ public class ProyectoAnalisis {
     static List<Double> x = new ArrayList();
     static List<Double> y = new ArrayList();
     static List<Double> distancias = new ArrayList();
+    static List<Double> distanciasCamiones = new ArrayList();
     static double [][] matriz ;
     /**
      * @param args the command line arguments
@@ -31,9 +32,14 @@ public class ProyectoAnalisis {
         llenarMatriz();
         calcularDistancia();
         double distanciaCamion = calcularDistanciaCamion();
-        double contador;
-        for (int i = 0; i < x.size(); i++) {
-            
+        double contador = 0;
+        for (int i = 0; i < distancias.size(); i++) {
+            if (contador < distanciaCamion) {
+                contador+= distancias.get(i);
+            }else{
+                distanciasCamiones.add(contador);
+                contador = distancias.get(i);
+            }
         }
         System.exit(0);
     }
